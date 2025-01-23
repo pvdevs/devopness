@@ -5,8 +5,9 @@ let inputData = Buffer.from(process.env.PR_DESCRIPTION_JSON, "base64").toString(
 );
 let prDescription = JSON.parse(inputData);
 
-validateQaSection(prDescription.Quality_Assurance);
+validateDescriptionOfChanges(prDescription.Description_of_changes);
 validateResolvedIssuesSection(prDescription.GitHub_issues_resolved_by_this_PR);
+validateQaSection(prDescription.Quality_Assurance);
 
 function fail(fieldName, message) {
   console.log(`❌ ${fieldName}:
@@ -19,20 +20,19 @@ function pass(fieldName, message) {
   > ${message}`);
 }
 
-function validateQaSection(qaSection) {
-  const SUCCESS_CRITERIA_TITLE =
-    "- Once this change is deployed, success criteria is:";
+function validateDescriptionOfChanges(descriptionOfChanges) {
+  const descriptionText = descriptionOfChanges.bodies
+    .filter((item) => item.type === "list")
+    .map((item) => item.raw.trim())
+    .join(" ");
 
-  let qaCheckList = qaSection.bodies.filter((item) => item.type === "list")[0];
-
-  let successCriteria = qaCheckList.items[0];
-  if (successCriteria.raw.trim() == SUCCESS_CRITERIA_TITLE) {
+  if (!descriptionText || descriptionText.length === 0) {
     fail(
-      "Success criteria",
-      `Pull requests must have a short description of success criteria, in field "${successCriteria.raw}"`,
+      "Description of Changes",
+      "Pull requests must include a description of changes in the 'Description of changes' field. This field cannot be empty.",
     );
   } else {
-    pass("Success criteria", successCriteria.raw);
+    pass("Description of Changes", descriptionText);
   }
 }
 
@@ -56,5 +56,22 @@ function validateResolvedIssuesSection(resolvedIssues) {
       "Issues resolved by this pull request",
       issueList.length > 0 ? issueList : "N/A",
     );
+  }
+}
+
+function validateQaSection(qaSection) {
+  const SUCCESS_CRITERIA_TITLE =
+    "- Once this change is deployed, success criteria is:";
+
+  let qaCheckList = qaSection.bodies.filter((item) => item.type === "list")[0];
+
+  let successCriteria = qaCheckList.items[0];
+  if (successCriteria.raw.trim() == SUCCESS_CRITERIA_TITLE) {
+    fail(
+      "Success criteria",
+      `Pull requests must have a short description of success criteria, in field "${successCriteria.raw}"`,
+    );
+  } else {
+    pass("Success criteria", successCriteria.raw);
   }
 }
