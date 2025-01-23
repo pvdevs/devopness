@@ -61,7 +61,7 @@ function validateResolvedIssuesSection(resolvedIssues) {
 
 function validateQaSection(qaSection) {
   const SUCCESS_CRITERIA_TITLE =
-    "- Once this change is deployed, success criteria is:";
+    "- Once the changes in this PR are merged and deployed, success criteria is:";
 
   let qaCheckList = qaSection.bodies.filter((item) => item.type === "list")[0];
 
