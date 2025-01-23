@@ -66,6 +66,10 @@ function validateQaSection(qaSection) {
   let qaCheckList = qaSection.bodies.filter((item) => item.type === "list")[0];
 
   let successCriteria = qaCheckList.items[0];
+
+  console.log("static success criteria" + SUCCESS_CRITERIA_TITLE);
+
+  console.log("success criteria" + successCriteria.raw.trim());
   if (successCriteria.raw.trim() == SUCCESS_CRITERIA_TITLE) {
     fail(
       "Success criteria",
