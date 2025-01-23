@@ -5,6 +5,8 @@ let inputData = Buffer.from(process.env.PR_DESCRIPTION_JSON, "base64").toString(
 );
 let prDescription = JSON.parse(inputData);
 
+console.log("Parsed PR Description:", JSON.stringify(prDescription, null, 2));
+
 validateQaSection(prDescription.Quality_Assurance);
 validateResolvedIssuesSection(prDescription.Issues_resolved_by_this_PR);
 
