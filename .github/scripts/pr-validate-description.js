@@ -29,7 +29,7 @@ function validateDescriptionOfChanges(descriptionOfChanges) {
   if (!descriptionText || descriptionText.length === 0) {
     fail(
       "Description of Changes",
-      `Pull requests must include a short description of changes, in field ${descriptionText.raw}.`,
+      "Pull requests must include a short description of changes in the 'Description of changes' field. This field cannot be empty.",
     );
   } else {
     pass("Description of Changes", descriptionText);
