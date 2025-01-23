@@ -39,6 +39,11 @@ function validateQaSection(qaSection) {
 function validateResolvedIssuesSection(resolvedIssues) {
   const GITHUB_ISSUE_FORMAT = /#\d+/g;
 
+  console.log(
+    "Resolved Issues Object:",
+    JSON.stringify(resolvedIssues, null, 2),
+  );
+
   if (!resolvedIssues || !resolvedIssues.bodies) {
     fail(
       "Missing resolved issues section",
