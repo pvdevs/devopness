@@ -8,7 +8,7 @@ let prDescription = JSON.parse(inputData);
 console.log("Parsed PR Description:", JSON.stringify(prDescription, null, 2));
 
 validateQaSection(prDescription.Quality_Assurance);
-validateResolvedIssuesSection(prDescription.Issues_resolved_by_this_PR);
+validateResolvedIssuesSection(prDescription.GitHub_issues_resolved_by_this_PR);
 
 function fail(fieldName, message) {
   console.log(`❌ ${fieldName}:
