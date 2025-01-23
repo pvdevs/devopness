@@ -67,9 +67,6 @@ function validateQaSection(qaSection) {
 
   let successCriteria = qaCheckList.items[0];
 
-  console.log("static success criteria" + SUCCESS_CRITERIA_TITLE);
-
-  console.log("success criteria" + successCriteria.raw.trim());
   if (successCriteria.raw.trim() == SUCCESS_CRITERIA_TITLE) {
     fail(
       "Success criteria",
