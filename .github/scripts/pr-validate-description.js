@@ -40,22 +40,6 @@ function validateQaSection(qaSection) {
 
 function validateResolvedIssuesSection(resolvedIssues) {
   const GITHUB_ISSUE_FORMAT = /#\d+/g;
-
-  console.log(
-    "Resolved Issues Object:",
-    JSON.stringify(resolvedIssues, null, 2),
-  );
-
-  console.log("Full PR Description:", process.env.PR_DESCRIPTION_JSON);
-
-  if (!resolvedIssues || !resolvedIssues.bodies) {
-    fail(
-      "Missing resolved issues section",
-      `Pull requests must include a valid 'Issues resolved by this PR' section with at least one GitHub issue (e.g., #123) or explicitly state 'N/A'. Please refer to our contributing guide: https://github.com/devopness/devopness/blob/main/CONTRIBUTING.md`,
-    );
-    return;
-  }
-
   const issuesCheckList = resolvedIssues.bodies
     .filter((item) => item.type === "list")
     .at(0);
