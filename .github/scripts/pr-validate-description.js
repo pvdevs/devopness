@@ -44,6 +44,8 @@ function validateResolvedIssuesSection(resolvedIssues) {
     JSON.stringify(resolvedIssues, null, 2),
   );
 
+  console.log("Full PR Description:", process.env.PR_DESCRIPTION_JSON);
+
   if (!resolvedIssues || !resolvedIssues.bodies) {
     fail(
       "Missing resolved issues section",
