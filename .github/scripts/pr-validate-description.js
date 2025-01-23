@@ -49,8 +49,7 @@ function validateResolvedIssuesSection(resolvedIssues) {
   ) {
     fail(
       "Missing Resolved Issues",
-      `Pull requests must specify at least one resolved GitHub issue (e.g., #123) or explicitly state "N/A" if no issue applies. The current content in the "GitHub issues resolved by this PR" section, "${issuesCheckList.raw}", does not meet this requirement.
-      If no issue exists, you are free to register one before proceeding. Please refer to our contributing guide: https://github.com/devopness/devopness/blob/main/CONTRIBUTING.md`,
+      `Pull requests must specify at least one resolved GitHub issue (e.g., #123) or explicitly state "N/A" if no issue applies. The current content in the "GitHub issues resolved by this PR" section, "${issuesCheckList.raw}", does not meet this requirement.\n\nIf no issue exists, you are free to register one before proceeding. Please refer to our contributing guide: https://github.com/devopness/devopness/blob/main/CONTRIBUTING.md`,
     );
   } else {
     pass(
