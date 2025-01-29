@@ -82,7 +82,9 @@ function validateDescriptionOfChanges(descriptionOfChanges) {
   const changes = descriptionOfChanges.bodies
     .filter((item) => item.type === "list")
     .flatMap((item) => item.items || [])
-    .filter((item) => item.raw && !PLACEHOLDER_REGEX.test(item.raw));
+    .filter(
+      (item) => item.raw.trim().length > 1 && !PLACEHOLDER_REGEX.test(item.raw),
+    );
 
   if (!changes.length) {
     fail(
