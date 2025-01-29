@@ -73,37 +73,101 @@ function pass(fieldName, message) {
  */
 function validateDescriptionOfChanges(descriptionOfChanges) {
   if (!descriptionOfChanges?.bodies) {
-    fail("Description of Changes", "The section is missing or malformed.");
+    fail(
+      "Description of Changes",
+      "Invalid PR template format. The 'Description of changes' section is missing or malformed.",
+    );
     return;
   }
 
-  // Find all list items that aren't the template placeholder
+  // Find all list items
   const changes = descriptionOfChanges.bodies
     .filter((item) => item.type === "list")
     .flatMap((item) => item.items || [])
-    .filter(
-      (item) => item.raw && !item.raw.includes("<add one check list item here"),
+    .filter((item) => {
+      if (!item.raw) return false;
+
+      // Check if the text contains anything between angle brackets
+      const placeholderRegex = /<[^>]+>/;
+      const isPlaceholder = placeholderRegex.test(item.raw.trim());
+
+      // Return true only for non-empty, non-placeholder items
+      return item.raw.trim().length > 0 && !isPlaceholder;
+    });
+
+  if (!changes.length) {
+    fail(
+      "Description of Changes",
+      "Pull requests must include at least one specific change in the 'Description of changes' field. Template placeholders are not valid descriptions.",
     );
+    return;
+  }
 
-  // const descriptionText = descriptionOfChanges.bodies
-  //   .filter((item) => item.type === "list" || item.type === "text")
-  //   .map((item) => item.raw.trim())
-  //   .join(" ");
+  // Additional check for meaningful content (optional)
+  const meaningfulChanges = changes.filter(
+    (item) => item.raw.trim().length > 10, // Ensure description has some substance
+  );
 
-  // if (
-  //   !descriptionText ||
-  //   descriptionText.includes(
-  //     "<add one check list item here for each meaningful change on this PR>",
-  //   )
-  // ) {
-  //   fail(
-  //     "Description of Changes",
-  //     "The section must contain meaningful content, not a placeholder.",
-  //   );
-  //   return;
-  // }
-  // pass("Description of Changes", descriptionText);
+  if (!meaningfulChanges.length) {
+    fail(
+      "Description of Changes",
+      "Description items must contain meaningful content (more than just a few characters).",
+    );
+    return;
+  }
+
+  pass(
+    "Description of Changes",
+    meaningfulChanges.map((item) => item.raw).join("\n    > "),
+  );
 }
+// function validateDescriptionOfChanges(descriptionOfChanges) {
+//   if (!descriptionOfChanges?.bodies) {
+//     fail("Description of Changes", "The section is missing or malformed.");
+//     return;
+//   }
+
+//   // Find all list items
+//   const changes = descriptionOfChanges.bodies
+//     .filter((item) => item.type === "list")
+//     .flatMap((item) => item.items || [])
+//     .filter((item) => {
+//       if (!item.raw) return false;
+
+//       // Check if the text contains anything between angle brackets
+//       const placeholderRegex = /<[^>]+>/;
+//       const isPlaceholder = placeholderRegex.test(item.raw.trim());
+
+//       // Return true only for non-empty, non-placeholder items
+//       return item.raw.trim().length > 0 && !isPlaceholder;
+//     });
+
+//   if (!changes.length) {
+//     fail(
+//       "Description of Changes",
+//       "Pull requests must include at least one specific change in the 'Description of changes' field. Template placeholders are not valid descriptions.",
+//     );
+//     return;
+//   }
+//   // const descriptionText = descriptionOfChanges.bodies
+//   //   .filter((item) => item.type === "list" || item.type === "text")
+//   //   .map((item) => item.raw.trim())
+//   //   .join(" ");
+
+//   // if (
+//   //   !descriptionText ||
+//   //   descriptionText.includes(
+//   //     "<add one check list item here for each meaningful change on this PR>",
+//   //   )
+//   // ) {
+//   //   fail(
+//   //     "Description of Changes",
+//   //     "The section must contain meaningful content, not a placeholder.",
+//   //   );
+//   //   return;
+//   // }
+//   // pass("Description of Changes", descriptionText);
+// }
 
 /**
  * Validates GitHub issues section, checking for issue references (#123) or marked as N/A
