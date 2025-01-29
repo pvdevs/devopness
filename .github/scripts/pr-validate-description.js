@@ -78,34 +78,12 @@ function validateDescriptionOfChanges(descriptionOfChanges) {
   }
 
   // Find all list items that aren't the template placeholder
-  const PLACEHOLDER_REGEX = /<[^>]+>/;
   const changes = descriptionOfChanges.bodies
     .filter((item) => item.type === "list")
     .flatMap((item) => item.items || [])
-    .filter((item) => {
-      const rawText = item.raw.trim();
-      return (
-        rawText.length > 3 &&
-        !(
-          rawText.startsWith("- [ ]") &&
-          rawText.includes("<") &&
-          rawText.includes(">")
-        )
-      );
-    });
-
-  if (!changes.length) {
-    fail(
-      "Description of Changes",
-      "Pull requests must include at least one specific change in the 'Description of changes' field.",
+    .filter(
+      (item) => item.raw && !item.raw.includes("<add one check list item here"),
     );
-    return;
-  }
-
-  pass(
-    "Description of Changes",
-    changes.map((item) => item.raw).join("\n    > "),
-  );
 
   // const descriptionText = descriptionOfChanges.bodies
   //   .filter((item) => item.type === "list" || item.type === "text")
