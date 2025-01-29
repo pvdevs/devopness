@@ -82,11 +82,17 @@ function validateDescriptionOfChanges(descriptionOfChanges) {
   const changes = descriptionOfChanges.bodies
     .filter((item) => item.type === "list")
     .flatMap((item) => item.items || [])
-    .filter(
-      (item) =>
-        item.raw &&
-        !PLACEHOLDER_REGEX.test(item.raw.replace(/<[^>]+>/g, "").trim()),
-    );
+    .filter((item) => {
+      const rawText = item.raw.trim();
+      return (
+        rawText.length > 3 &&
+        !(
+          rawText.startsWith("- [ ]") &&
+          rawText.includes("<") &&
+          rawText.includes(">")
+        )
+      );
+    });
 
   if (!changes.length) {
     fail(
