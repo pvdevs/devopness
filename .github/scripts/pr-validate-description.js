@@ -78,12 +78,11 @@ function validateDescriptionOfChanges(descriptionOfChanges) {
   }
 
   // Find all list items that aren't the template placeholder
+  const PLACEHOLDER_REGEX = /<[^>]+>/;
   const changes = descriptionOfChanges.bodies
     .filter((item) => item.type === "list")
     .flatMap((item) => item.items || [])
-    .filter(
-      (item) => item.raw && !item.raw.includes("<add one check list item here"),
-    );
+    .filter((item) => item.raw && !PLACEHOLDER_REGEX.test(item.raw));
 
   if (!changes.length) {
     fail(
