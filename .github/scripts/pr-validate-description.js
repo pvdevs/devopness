@@ -87,12 +87,13 @@ function validateDescriptionOfChanges(descriptionOfChanges) {
     .filter((item) => {
       if (!item.raw) return false;
 
-      // Check if the text contains anything between angle brackets
-      const placeholderRegex = /<[^>]+>/;
-      const isPlaceholder = placeholderRegex.test(item.raw.trim());
+      // Remove angle bracket placeholders
+      let content = item.raw.replace(/<[^>]+>/g, "");
 
-      // Return true only for non-empty, non-placeholder items
-      return item.raw.trim().length > 0 && !isPlaceholder;
+      // Trim and check if there's any remaining content
+      content = content.trim();
+
+      return content.length > 0;
     });
 
   if (!changes.length) {
@@ -103,22 +104,33 @@ function validateDescriptionOfChanges(descriptionOfChanges) {
     return;
   }
 
-  // Additional check for meaningful content (optional)
-  const meaningfulChanges = changes.filter(
-    (item) => item.raw.trim().length > 10, // Ensure description has some substance
-  );
+  // Additional check for meaningful content
+  const meaningfulChanges = changes.filter((item) => {
+    // Remove HTML comments and placeholders to check actual content length
+    let content = item.raw
+      .replace(/<!--[\s\S]*?-->/g, "") // Remove HTML comments
+      .replace(/<[^>]+>/g, "") // Remove angle bracket placeholders
+      .trim();
+
+    return content.length > 3; // Ensure there's some minimal content
+  });
 
   if (!meaningfulChanges.length) {
     fail(
       "Description of Changes",
-      "Description items must contain meaningful content (more than just a few characters).",
+      "Description items must contain meaningful content beyond placeholders and comments.",
     );
     return;
   }
 
   pass(
     "Description of Changes",
-    meaningfulChanges.map((item) => item.raw).join("\n    > "),
+    meaningfulChanges
+      .map((item) => {
+        // For display purposes, keep the comments but clean up extra whitespace
+        return item.raw.replace(/\s+/g, " ").trim();
+      })
+      .join("\n    > "),
   );
 }
 // function validateDescriptionOfChanges(descriptionOfChanges) {
