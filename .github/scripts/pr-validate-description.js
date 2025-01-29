@@ -92,36 +92,12 @@ function validateDescriptionOfChanges(descriptionOfChanges) {
   if (!descriptionText || descriptionText.length === 0 || isPlaceholderOnly) {
     fail(
       "Description of Changes",
-      "Pull requests must include a short description of changes in the 'Description of changes' field. Template placeholders are not valid descriptions.",
+      "Pull requests must include a short description of changes in the 'Description of changes' field. This field cannot be empty.",
     );
     return;
   }
   pass("Description of Changes", descriptionText);
 }
-
-// function validateDescriptionOfChanges(descriptionOfChanges) {
-//   if (!descriptionOfChanges?.bodies) {
-//     fail(
-//       "Description of Changes",
-//       "Invalid PR template format. The 'Description of changes' section is missing or malformed.",
-//     );
-//     return;
-//   }
-
-//   const descriptionText = descriptionOfChanges.bodies
-//     .filter((item) => item.type === "list")
-//     .map((item) => item.raw.trim())
-//     .join(" ");
-
-//   if (!descriptionText || descriptionText.length === 0) {
-//     fail(
-//       "Description of Changes",
-//       "Pull requests must include a short description of changes in the 'Description of changes' field. This field cannot be empty.",
-//     );
-//     return;
-//   }
-//   pass("Description of Changes", descriptionText);
-// }
 
 /**
  * Validates GitHub issues section, checking for issue references (#123) or marked as N/A
@@ -210,6 +186,7 @@ function validateQaSection(qaSection) {
       "Quality Assurance",
       "Invalid success criteria format in the 'Quality Assurance' section.",
     );
+    return;
   }
 
   if (successCriteria.raw.trim() === SUCCESS_CRITERIA_TITLE) {
@@ -217,6 +194,7 @@ function validateQaSection(qaSection) {
       "Success criteria",
       `Pull requests must have a short description of success criteria, in field "${successCriteria.raw}"`,
     );
+    return;
   }
   pass("Success criteria", successCriteria.raw);
 }
