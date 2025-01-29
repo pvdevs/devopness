@@ -1,0 +1,175 @@
+{
+  "Description_of_changes": {
+    "type": "heading",
+    "raw": "## Description of changes\n",
+    "depth": 2,
+    "text": "Description of changes",
+    "tokens": [
+      {
+        "type": "text",
+        "raw": "Description of changes",
+        "text": "Description of changes"
+      }
+    ],
+    "subheader": {},
+    "bodies": [
+      {
+        "type": "list",
+        "raw": "- Added defensive validation to PR description checks\n- Improved error messages for malformed sections\n- Added comprehensive documentation",
+        "ordered": false,
+        "start": "",
+        "loose": false,
+        "items": [
+          {
+            "type": "list_item",
+            "raw": "- Added defensive validation to PR description checks",
+            "task": false,
+            "loose": false,
+            "text": "Added defensive validation to PR description checks",
+            "tokens": [
+              {
+                "type": "text",
+                "raw": "Added defensive validation to PR description checks",
+                "text": "Added defensive validation to PR description checks"
+              }
+            ]
+          },
+          {
+            "type": "list_item",
+            "raw": "- Improved error messages for malformed sections",
+            "task": false,
+            "loose": false,
+            "text": "Improved error messages for malformed sections",
+            "tokens": [
+              {
+                "type": "text",
+                "raw": "Improved error messages for malformed sections",
+                "text": "Improved error messages for malformed sections"
+              }
+            ]
+          },
+          {
+            "type": "list_item",
+            "raw": "- Added comprehensive documentation",
+            "task": false,
+            "loose": false,
+            "text": "Added comprehensive documentation",
+            "tokens": [
+              {
+                "type": "text",
+                "raw": "Added comprehensive documentation",
+                "text": "Added comprehensive documentation"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "GitHub_issues_resolved_by_this_PR": {
+    "type": "heading",
+    "raw": "## GitHub issues resolved by this PR\n",
+    "depth": 2,
+    "text": "GitHub issues resolved by this PR",
+    "tokens": [
+      {
+        "type": "text",
+        "raw": "GitHub issues resolved by this PR",
+        "text": "GitHub issues resolved by this PR"
+      }
+    ],
+    "subheader": {},
+    "bodies": [
+      {
+        "type": "list",
+        "raw": "- Resolves #123",
+        "ordered": false,
+        "start": "",
+        "loose": false,
+        "items": [
+          {
+            "type": "list_item",
+            "raw": "- Resolves #123",
+            "task": false,
+            "loose": false,
+            "text": "Resolves #123",
+            "tokens": [
+              {
+                "type": "text",
+                "raw": "Resolves #123",
+                "text": "Resolves #123"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Quality_Assurance": {
+    "type": "heading",
+    "raw": "## Quality Assurance\n",
+    "depth": 2,
+    "text": "Quality Assurance",
+    "tokens": [
+      {
+        "type": "text",
+        "raw": "Quality Assurance",
+        "text": "Quality Assurance"
+      }
+    ],
+    "subheader": {},
+    "bodies": [
+      {
+        "type": "list",
+        "raw": "- Once the changes in this PR are merged and deployed, success criteria is:\n  - PR validation runs without TypeErrors\n  - All sections are properly validated\n  - Error messages are clear and helpful",
+        "ordered": false,
+        "start": "",
+        "loose": false,
+        "items": [
+          {
+            "type": "list_item",
+            "raw": "- PR validation runs without TypeErrors",
+            "task": false,
+            "loose": false,
+            "text": "PR validation runs without TypeErrors",
+            "tokens": [
+              {
+                "type": "text",
+                "raw": "PR validation runs without TypeErrors",
+                "text": "PR validation runs without TypeErrors"
+              }
+            ]
+          },
+          {
+            "type": "list_item",
+            "raw": "- All sections are properly validated",
+            "task": false,
+            "loose": false,
+            "text": "All sections are properly validated",
+            "tokens": [
+              {
+                "type": "text",
+                "raw": "All sections are properly validated",
+                "text": "All sections are properly validated"
+              }
+            ]
+          },
+          {
+            "type": "list_item",
+            "raw": "- Error messages are clear and helpful",
+            "task": false,
+            "loose": false,
+            "text": "Error messages are clear and helpful",
+            "tokens": [
+              {
+                "type": "text",
+                "raw": "Error messages are clear and helpful",
+                "text": "Error messages are clear and helpful"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
