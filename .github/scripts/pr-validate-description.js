@@ -84,7 +84,8 @@ function validateDescriptionOfChanges(descriptionOfChanges) {
     .flatMap((item) => item.items || [])
     .filter(
       (item) =>
-        item.raw && !PLACEHOLDER_REGEX.test(item.raw.replace(/^\S/, "")),
+        item.raw &&
+        !PLACEHOLDER_REGEX.test(item.raw.replace(/<[^>]+>/g, "").trim()),
     );
 
   if (!changes.length) {
