@@ -73,26 +73,49 @@ function pass(fieldName, message) {
  */
 function validateDescriptionOfChanges(descriptionOfChanges) {
   if (!descriptionOfChanges?.bodies) {
-    fail(
-      "Description of Changes",
-      "Invalid PR template format. The 'Description of changes' section is missing or malformed.",
-    );
+    fail("Description of Changes", "The section is missing or malformed.");
     return;
   }
 
-  const descriptionText = descriptionOfChanges.bodies
+  // Find all list items that aren't the template placeholder
+  const changes = descriptionOfChanges.bodies
     .filter((item) => item.type === "list")
-    .map((item) => item.raw.trim())
-    .join(" ");
+    .flatMap((item) => item.items || [])
+    .filter(
+      (item) => item.raw && !item.raw.includes("<add one check list item here"),
+    );
 
-  if (!descriptionText || descriptionText.length === 0) {
+  if (!changes.length) {
     fail(
       "Description of Changes",
-      "Pull requests must include a short description of changes in the 'Description of changes' field. This field cannot be empty.",
+      "Pull requests must include at least one specific change in the 'Description of changes' field.",
     );
     return;
   }
-  pass("Description of Changes", descriptionText);
+
+  pass(
+    "Description of Changes",
+    changes.map((item) => item.raw).join("\n    > "),
+  );
+
+  // const descriptionText = descriptionOfChanges.bodies
+  //   .filter((item) => item.type === "list" || item.type === "text")
+  //   .map((item) => item.raw.trim())
+  //   .join(" ");
+
+  // if (
+  //   !descriptionText ||
+  //   descriptionText.includes(
+  //     "<add one check list item here for each meaningful change on this PR>",
+  //   )
+  // ) {
+  //   fail(
+  //     "Description of Changes",
+  //     "The section must contain meaningful content, not a placeholder.",
+  //   );
+  //   return;
+  // }
+  // pass("Description of Changes", descriptionText);
 }
 
 /**
