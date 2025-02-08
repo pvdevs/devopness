@@ -1,0 +1,1 @@
+const dez = 10;
