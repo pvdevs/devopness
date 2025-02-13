@@ -1,5 +1,25 @@
 # @devopness/sdk-js
 
+## 2.155.0
+
+### Minor Changes
+
+- [#1298](https://github.com/devopness/devopness/pull/1298) [`6e2ccd8`](https://github.com/devopness/devopness/commit/6e2ccd8d093d3d7b5fafc8ca0cce4b3b5323008c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Breaking Change:** Renamed `allow_custom_steps` property to `is_user_managed` in `PipelineSettings` interface.
+
+  - The new property indicates whether the user has permission to see and manage the pipeline for the resource operation.
+
+- [#1298](https://github.com/devopness/devopness/pull/1298) [`6e2ccd8`](https://github.com/devopness/devopness/commit/6e2ccd8d093d3d7b5fafc8ca0cce4b3b5323008c) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Breaking Change:** Removed the deprecated `is_auto_generated` property from both `Pipeline` and `PipelineRelation` interfaces as it's no longer used by the Devopness API.
+
+## 2.154.1
+
+### Patch Changes
+
+- [#1292](https://github.com/devopness/devopness/pull/1292) [`fb453cf`](https://github.com/devopness/devopness/commit/fb453cfcb3b8a670c6a47bfbff6473bc818c0de9) Thanks [@souz4-my](https://github.com/souz4-my)! - **Add** `team_memberships` field to `EnvironmentRelation` and `ArquivedEnvironmentRelation` models
+
+- [#1292](https://github.com/devopness/devopness/pull/1292) [`fb453cf`](https://github.com/devopness/devopness/commit/fb453cfcb3b8a670c6a47bfbff6473bc818c0de9) Thanks [@souz4-my](https://github.com/souz4-my)! - **Change** `credentials` field type in `Server` model to nullable
+
+- [#1276](https://github.com/devopness/devopness/pull/1276) [`96a2010`](https://github.com/devopness/devopness/commit/96a2010f630d5bc037193d0962f3113d2ca1aa3e) Thanks [@Diegiwg](https://github.com/Diegiwg)! - **Remove** deprecated `environment_id` field from service operation models
+
 ## 2.154.0
 
 ### Minor Changes

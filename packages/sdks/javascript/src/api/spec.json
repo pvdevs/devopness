@@ -1360,6 +1360,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         }
       },
@@ -1411,6 +1414,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         }
       },
@@ -1455,6 +1461,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -1531,6 +1540,9 @@
               }
             }
           },
+          "404": {
+            "description": "The specified resource was not found"
+          },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
             "content": {
@@ -1605,6 +1617,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -1681,6 +1696,9 @@
               }
             }
           },
+          "404": {
+            "description": "The specified resource was not found"
+          },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
             "content": {
@@ -1755,6 +1773,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -4990,6 +5011,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         }
       },
@@ -5041,6 +5065,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         }
       },
@@ -5085,6 +5112,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -5214,6 +5244,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -7622,6 +7655,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         }
       },
@@ -7673,6 +7709,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           }
         }
       },
@@ -7841,7 +7880,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -7852,6 +7899,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -7908,7 +7958,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -7919,6 +7977,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -7975,7 +8036,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -7986,6 +8055,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -8042,7 +8114,15 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "No Content",
+            "headers": {
+              "X-Devopness-Action-Id": {
+                "schema": {
+                  "type": "integer"
+                },
+                "description": "The dispatched action ID of the resource"
+              }
+            }
           },
           "403": {
             "description": "Forbidden/Unauthorized",
@@ -8053,6 +8133,9 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "The specified resource was not found"
           },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
@@ -11165,6 +11248,9 @@
               }
             }
           },
+          "404": {
+            "description": "The specified resource was not found"
+          },
           "422": {
             "description": "Unprocessable Entity/Validation Error",
             "content": {
@@ -11478,6 +11564,7 @@
       "name": "Credentials",
       "tags": [
         "Credentials",
+        "Credentials - Repositories",
         "Environments - Credentials"
       ]
     },
@@ -13338,6 +13425,9 @@
           },
           "project": {
             "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "team_memberships": {
+            "$ref": "#/components/schemas/TeamMembershipList"
           }
         },
         "required": [
@@ -15257,6 +15347,9 @@
           },
           "project": {
             "$ref": "#/components/schemas/ProjectRelation"
+          },
+          "team_memberships": {
+            "$ref": "#/components/schemas/TeamMembershipList"
           }
         },
         "required": [
@@ -17421,11 +17514,6 @@
             "example": "Deploy",
             "type": "string"
           },
-          "is_auto_generated": {
-            "description": "Indicates if the pipeline was auto_generated by `Devopness` itself",
-            "example": false,
-            "type": "boolean"
-          },
           "max_parallel_actions": {
             "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.",
             "example": 1,
@@ -17461,7 +17549,6 @@
           "resource_id",
           "operation",
           "operation_human_readable",
-          "is_auto_generated",
           "max_parallel_actions",
           "trigger_when",
           "steps",
@@ -17551,11 +17638,6 @@
             "example": "Deploy",
             "type": "string"
           },
-          "is_auto_generated": {
-            "description": "Indicates if the pipeline was auto_generated by `Devopness` itself",
-            "example": false,
-            "type": "boolean"
-          },
           "max_parallel_actions": {
             "description": "Maximum number of actions that can run in parallel for this pipeline. `0` means no limit of simultaneous actions. `1` means just a single action will be started at a time to run this pipeline.",
             "example": 1,
@@ -17588,7 +17670,6 @@
           "resource_id",
           "operation",
           "operation_human_readable",
-          "is_auto_generated",
           "max_parallel_actions",
           "trigger_when",
           "created_by_user",
@@ -17605,8 +17686,9 @@
             "type": "integer",
             "example": 1
           },
-          "allow_custom_steps": {
+          "is_user_managed": {
             "type": "boolean",
+            "description": "Indicates whether the user has permission to manage the pipeline for the resource operation",
             "example": true
           },
           "stages": {
@@ -19164,7 +19246,7 @@
             "type": "string"
           },
           "credential": {
-            "$ref": "#/components/schemas/Credential"
+            "$ref": "#/components/schemas/CredentialRelation"
           },
           "region": {
             "description": "The region in which the server is located",
@@ -19217,6 +19299,7 @@
           "hostname",
           "provider_name",
           "provider_name_human_readable",
+          "credential",
           "region",
           "region_human_readable",
           "ip_address",
@@ -19386,18 +19469,10 @@
       "ServiceGetStatus": {
         "type": "object",
         "properties": {
-          "environment_id": {
-            "description": "The ID of the environment this service is running in.",
-            "example": 839,
-            "type": "integer"
-          },
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
           }
-        },
-        "required": [
-          "environment_id"
-        ]
+        }
       },
       "ServiceInitialState": {
         "type": "string",
@@ -19507,66 +19582,34 @@
       "ServiceReload": {
         "type": "object",
         "properties": {
-          "environment_id": {
-            "description": "The ID of the environment this service is running in.",
-            "example": 839,
-            "type": "integer"
-          },
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
           }
-        },
-        "required": [
-          "environment_id"
-        ]
+        }
       },
       "ServiceRestart": {
         "type": "object",
         "properties": {
-          "environment_id": {
-            "description": "The ID of the environment this service is running in.",
-            "example": 839,
-            "type": "integer"
-          },
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
           }
-        },
-        "required": [
-          "environment_id"
-        ]
+        }
       },
       "ServiceStart": {
         "type": "object",
         "properties": {
-          "environment_id": {
-            "description": "The ID of the environment this service is running in.",
-            "example": 839,
-            "type": "integer"
-          },
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
           }
-        },
-        "required": [
-          "environment_id"
-        ]
+        }
       },
       "ServiceStop": {
         "type": "object",
         "properties": {
-          "environment_id": {
-            "description": "The ID of the environment this service is running in.",
-            "example": 839,
-            "type": "integer"
-          },
           "servers": {
             "$ref": "#/components/schemas/ResourceIdList"
           }
-        },
-        "required": [
-          "environment_id"
-        ]
+        }
       },
       "ServiceType": {
         "type": "string",
